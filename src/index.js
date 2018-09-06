@@ -243,6 +243,16 @@ function addSales(city, sales) {
   // property and save the sales figure as its value.
 
   // return the updated globalSales object
+
+  console.log(globalSales.london);
+
+  if (globalSales.hasOwnProperty(city)) {
+    globalSales[city] += sales;
+  } else {
+    globalSales[city] = sales;
+  }
+  console.log(globalSales);
+  return globalSales;
 }
 
 function totalSales(sales) {
@@ -250,6 +260,10 @@ function totalSales(sales) {
   // in the previous exercise. Add up all the sales figures
   // and return the total.
   // Hint: look up how to get the values of an object
+  const output = Object.keys(sales).reduce(function(acc, key) {
+    return (acc += sales[key]);
+  }, 0);
+  return output;
 }
 
 function highestSum(input) {
@@ -262,6 +276,15 @@ function highestSum(input) {
   // ]
   // If an inner array is empty, consider its sum to be 0
   // find and return the largest sum of an inner array
+
+  const output = input.map(function(item) {
+    const sum = item.reduce(function(acc, item) {
+      return acc + item;
+    }, 0);
+    return sum;
+  });
+  console.log(output);
+  return Math.max(...output);
 }
 
 function walletSum(wallet) {
@@ -278,12 +301,26 @@ function walletSum(wallet) {
   // calculate the sum of money in the wallet and return
   // the total.
   // the denominations used in this exercise are 5, 10 and 20
+  const output = Object.keys(wallet).reduce(function(acc, currentKey) {
+    let walletValue = currentKey * wallet[currentKey];
+    return acc + walletValue;
+  }, 0);
+  return output;
 }
 
 function walletMerge(wallet1, wallet2) {
   // return a new wallet object containing the contents of
   // both wallets passed in.
   // the denominations used in this exercise are 5, 10 and 20
+
+  const output = Object.keys(wallet1).reduce(function(acc, item) {
+    const value = wallet1[item] + wallet2[item];
+    acc[item] = value;
+    console.log(acc);
+
+    return acc;
+  }, {});
+  return output;
 }
 
 function arrayOfWallets(wallets) {

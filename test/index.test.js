@@ -295,7 +295,7 @@ test("Second largest", () => {
   expect(output).toEqual(2);
 });
 
-test.only("Add sales", () => {
+test("Add sales", () => {
   const londonx = {
     london: 250,
     paris: 300,
